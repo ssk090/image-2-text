@@ -1,14 +1,14 @@
 "use client";
 
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export function Component() {
   const [image, setImage] = useState(null);
   const [text, setText] = useState("Generated text will appear here...");
   const [loading, setLoading] = useState(false);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement> | any) => {
     const file = e.target.files[0];
     if (file) {
       setImage(file);
@@ -41,7 +41,7 @@ export function Component() {
         throw new Error("Failed to upload image.");
       }
 
-      const data = await response.json();
+      const data: any = await response.json();
       setText(data.description);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -59,7 +59,7 @@ export function Component() {
             Image to Text
           </h1>
           <p className="max-w-md text-muted-foreground dark:text-muted-foreground-dark">
-            Upload an image and we'll convert it to text for you.
+            {`Upload an image and we'll convert it to text for you.`}
           </p>
           <div>
             <label
@@ -98,7 +98,7 @@ export function Component() {
   );
 }
 
-function UploadIcon(props) {
+function UploadIcon(props: any) {
   return (
     <svg
       {...props}
